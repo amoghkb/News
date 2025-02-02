@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import '../Treanding_Page.dart';
+import 'package:news/TreandingFolder/Filters/Business.dart';
+import 'package:news/TreandingFolder/Filters/Politics.dart';
+import 'package:news/TreandingFolder/Filters/Sports.dart';
+import '../TreandingFolder/Treanding_Page.dart';
 import 'Country.dart';
 import 'Main_NewsCard.dart';
 
@@ -82,13 +85,14 @@ class _HomescreenMainState extends State<HomescreenMain> {
             ? _homeScreen()
             : const TabBarView(
           children: [
-            Center(child: Text("Politics News Content")),
-            Center(child: Text("Sports News Content")),
-            Center(child: Text("Business News Content")),
+            Politics(),
+            Sports(),
+            Business()
           ],
         ),
 
         bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Colors.white,
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,
           selectedItemColor: Colors.blue,

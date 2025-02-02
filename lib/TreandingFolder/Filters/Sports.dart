@@ -1,47 +1,27 @@
+import 'package:flutter/widgets.dart';
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../Models/APIModel.dart';
+import '../../HomeScreen/Inside_news.dart';
+import '../../Models/APIModel.dart';
 import 'package:http/http.dart' as http;
 
-import 'Inside_news.dart';
-
-class MainNewscard extends StatefulWidget {
-  final String country;
-  const MainNewscard({super.key, required this.country});
+class Sports extends StatefulWidget {
+  const Sports({super.key});
 
   @override
-  State<MainNewscard> createState() => _MainNewscardState();
+  State<Sports> createState() => _SportsState();
 }
 
-class _MainNewscardState extends State<MainNewscard> {
-
-
-
+class _SportsState extends State<Sports> with AutomaticKeepAliveClientMixin {
   final String API_key = "ff43a5bdd07946a3950377e54f9e0bbc";
   List<ApiModel> CountryData = [];
   bool isLoading = true;
 
-  @override
-  void initState() {
-    super.initState();
-    CountryGetDetails(widget.country); // Fetch default country news
-  }
-
-  @override
-  void didUpdateWidget(MainNewscard oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (oldWidget.country != widget.country) {
-      setState(() {
-        isLoading = true;
-      });
-      CountryGetDetails(widget.country); // Fetch news when country changes
-    }
-  }
-
-  Future<void> CountryGetDetails(String country) async {
+  // Fetching politics news
+  Future<void> Getpolitics() async {
     final String Url =
-        "https://newsapi.org/v2/everything?q=$country&from=2025-01-20&sortBy=publishedAt&apiKey=$API_key";
+        "https://newsapi.org/v2/everything?q=sports&from=2025-01-20&sortBy=publishedAt&apiKey=$API_key";
 
     try {
       final res = await http.get(Uri.parse(Url));
@@ -64,7 +44,17 @@ class _MainNewscardState extends State<MainNewscard> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    Getpolitics();
+  }
+
+  @override
+  bool get wantKeepAlive => true; // ✅ Maintain state even when switching tabs
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context); // Required for AutomaticKeepAliveClientMixin
     return isLoading
         ? const Center(
       child: CupertinoActivityIndicator(color: Colors.brown),
@@ -110,22 +100,17 @@ class _MainNewscardState extends State<MainNewscard> {
                       },
                     ),
                   ),
-
-                  // Gradient Overlay for better text readability
+                  // Gradient Overlay
                   Container(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        colors: [
-                          Colors.black.withOpacity(0.8),
-                          Colors.transparent
-                        ],
+                        colors: [Colors.black.withOpacity(0.8), Colors.transparent],
                         begin: Alignment.bottomCenter,
                         end: Alignment.topCenter,
                       ),
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-
                   // News Title
                   Positioned(
                     bottom: 10,

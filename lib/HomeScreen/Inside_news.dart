@@ -62,7 +62,7 @@ class InsideNews extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(10),
               child: Text(
-                news.description,
+               "${news.description}",
                 style: Theme.of(context).textTheme.bodySmall,
               ),
             ),
