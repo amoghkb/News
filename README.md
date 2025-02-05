@@ -8,13 +8,6 @@
     <li>Categorized news sections (e.g., Technology, Business, Sports, Health, etc.).</li>
 </ul>
 
-<h2>Tech Stack</h2>
-<ul>
-    <li><strong>Flutter</strong> (Dart)</li>
-    <li><strong>API</strong>: NewsAPI or any preferred news provider.</li>
-    <li><strong>State Management</strong>: Provider / Riverpod (optional)</li>
-    <li><strong>HTTP Package</strong>: For API calls</li>
-</ul>
 
 <img src="https://github.com/user-attachments/assets/3c146668-838d-45bd-a30d-b7e3ac8b64add" width="200"/>
 <img src="https://github.com/user-attachments/assets/7e16b77c-bbbe-469e-9c8e-34189b01e59a" width="200"/>
